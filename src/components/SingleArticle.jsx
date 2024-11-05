@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { fetchArticleById } from "../api";
 import dateFormat from "dateformat";
+import { CommentList } from "./CommentList";
 
 export function SingleArticle() {
   const { id } = useParams();
@@ -35,6 +36,7 @@ export function SingleArticle() {
   }
 
   return (
+  <>
     <section className="article-container">
         <h1>{article.title}</h1>
         <h2>{article.topic}</h2>
@@ -44,9 +46,13 @@ export function SingleArticle() {
         <br/>
         <p>{article.body}</p>
         <br/>
-        <p>Votes: {article.votes} <button>👍</button><button>👎</button></p>
+        <p>Votes: {article.votes} <button>👍</button> <button>👎</button></p>
         <p>Comments: {article.comment_count}</p>
+        
     </section>
+        <CommentList id={article.article_id}/>
+  </>
+    
   )
 
 }
