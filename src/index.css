@@ -94,3 +94,14 @@ button:focus-visible {
   margin-right: 10px;
   padding: 20px;
 }
+
+.article-container {
+  display: flex;
+  flex-direction: column;
+  margin: 50px;
+}
+
+.article-img {
+  width: 100%;
+  max-width: 700px;
+}

@@ -32,12 +32,12 @@ export function Home() {
 
     function handleClick (event) {
         event.preventDefault()
-        setAllArticlesClicked(true)
+        setAllArticlesClicked(!allArticlesClicked)
     }
     
     return (
         <>
-            <h3><a onClick={handleClick}>All Articles</a></h3>
+            <a onClick={handleClick}><h3>All Articles</h3></a>
             {allArticlesClicked ? <ArticleList articles={articles}/> : null}
         </>
     )
