@@ -21,3 +21,10 @@ export function fetchCommentsByArticle(id) {
     return data.comments
   })
 }
+
+export function incrementVotes(id, num) {
+  const incData = { inc_votes: num };
+  return api.patch(`/articles/${id}`, incData).then(({ data }) => {
+    return data.article
+  })
+}
