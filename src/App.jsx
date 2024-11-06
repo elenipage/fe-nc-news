@@ -3,8 +3,8 @@ import { Header } from './components/Header'
 import { Routes, Route } from 'react-router-dom'
 import { Profile } from './components/Profile'
 import { Home } from './components/Home'
-import { ArticleHandler } from './components/ArticleHandler'
-import { SingleArticle } from './components/SingleArticle'
+import { ArticleHandler } from './components/articles/ArticleHandler'
+import { SingleArticle } from './components/articles/SingleArticle'
 
 function App() {
 

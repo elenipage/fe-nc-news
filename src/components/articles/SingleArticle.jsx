@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { fetchArticleById, incrementVotes } from "../api";
+import { fetchArticleById, incrementVotes } from "../../api";
 import dateFormat from "dateformat";
-import { CommentList } from "./CommentList";
+import { CommentList } from "../comments/CommentList";
 import { VoteChanger } from "./VoteChanger";
+import { CommentAdder } from "../comments/CommentAdder";
 
 export function SingleArticle() {
   const { id } = useParams();
@@ -11,14 +12,14 @@ export function SingleArticle() {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [votes, setVotes] = useState(0);
-
+  const [newComment, setNewComment] = useState(null);
 
   const date = dateFormat(article.created_at, "dddd, mmmm dS, yyyy, HH:MM");
 
   useEffect(() => {
     setIsError(false);
     setIsLoading(true);
-
+    setNewComment(null);
     fetchArticleById(id)
       .then((article) => {
         setArticle(article);
@@ -51,10 +52,11 @@ export function SingleArticle() {
         <p>{article.body}</p>
         <br />
         <p>Votes: {votes}</p>
-        <VoteChanger id={id} setVotes={setVotes} setArticle={setArticle}/>
+        <VoteChanger id={id} setVotes={setVotes} setArticle={setArticle} />
         <p>Comments: {article.comment_count}</p>
       </section>
-      <CommentList id={article.article_id} />
+      <CommentAdder setNewComment={setNewComment} id={article.article_id} />
+      <CommentList newComment={newComment} id={article.article_id} />
     </>
   );
 }

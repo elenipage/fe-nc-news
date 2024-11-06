@@ -194,3 +194,29 @@ button:focus-visible {
 .disabled-vote-button {
   border-style: hidden;
 }
+
+#add-comment-button {
+  border: 1px solid;
+  border-color: #d4d4d4;
+  background-color: #f3f3f3;
+  border-radius: 2%;
+  margin: 15px;
+  margin-bottom: 30px;
+  padding: 10px;
+  color: #4a5864;
+  width: 100%;
+  text-align: left;
+  font-size: medium;
+}
+
+.new-comment-container {
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
+  background-color: #f7f7f7;
+  border-radius: 15px;
+  border: 1px solid #BF132D;
+}

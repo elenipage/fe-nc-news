@@ -1,4 +1,4 @@
-import { incrementVotes } from "../api";
+import { incrementVotes } from "../../api";
 import { useState, useEffect } from "react";
 
 export function VoteChanger(props) {
