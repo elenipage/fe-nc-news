@@ -5,62 +5,79 @@ export function VoteChanger(props) {
   const { id, setVotes } = props;
   const [upVoted, setUpvoted] = useState(false);
   const [downVoted, setDownvoted] = useState(false);
+  const [isVoting, setIsVoting] = useState(false);
+  const [messageVisible, setMessageVisible] = useState(false);
 
   useEffect(() => {
     setUpvoted(JSON.parse(localStorage.getItem("upVoted") || "false"));
     setDownvoted(JSON.parse(localStorage.getItem("downVoted") || "false"));
   }, []);
 
-  function handleChange(event) {
+  function handleVoteChange(event) {
     event.preventDefault();
+    if (isVoting) return;
+
+    setIsVoting(true);
     const num = Number(event.target.value);
 
-    if (num > 0) {
-      if (upVoted) {
-        incrementVotes(id, -1).then(() => {
-          setUpvoted(false);
-          localStorage.setItem("upVoted", JSON.stringify(false));
-          setVotes((currentVotes) => currentVotes - 1);
-        });
-      } else {
-        incrementVotes(id, 1).then(() => {
-          setUpvoted(true);
-          localStorage.setItem("upVoted", JSON.stringify(true));
-          localStorage.setItem("downVoted", JSON.stringify(false));
-          setVotes((currentVotes) => currentVotes + 1);
-        });
-      }
-    }
-  
-    else {
-      if (downVoted) {
-        incrementVotes(id, 1).then(() => {
-          setDownvoted(false);
-          localStorage.setItem("downVoted", JSON.stringify(false));
-          setVotes((currentVotes) => currentVotes + 1);
-        });
-      } else {
-        incrementVotes(id, -1).then(() => {
-          setDownvoted(true);
-          localStorage.setItem("downVoted", JSON.stringify(true));
-          localStorage.setItem("upVoted", JSON.stringify(false));
-          setVotes((currentVotes) => currentVotes - 1);
-        });
-      }
+    if (num > 0 && !upVoted) {
+      const voteChange = downVoted ? 2 : 1;
+      incrementVotes(id, voteChange).then(() => {
+        setUpvoted(true);
+        setDownvoted(false);
+        localStorage.setItem("upVoted", JSON.stringify(true));
+        localStorage.setItem("downVoted", JSON.stringify(false));
+        setVotes((currentVotes) => currentVotes + voteChange);
+        setMessageVisible(true);
+        setTimeout(() => setMessageVisible(false), 3000);
+        setIsVoting(false);
+      });
+    } else if (num < 0 && !downVoted) {
+      const voteChange = upVoted ? -2 : -1;
+      incrementVotes(id, voteChange).then(() => {
+        setDownvoted(true);
+        setUpvoted(false);
+        localStorage.setItem("downVoted", JSON.stringify(true));
+        localStorage.setItem("upVoted", JSON.stringify(false));
+        setVotes((currentVotes) => currentVotes + voteChange);
+        setMessageVisible(true);
+        setTimeout(() => setMessageVisible(false), 3000);
+        setIsVoting(false);
+      });
+    } else {
+      const reverseVote = num > 0 ? -1 : 1;
+      incrementVotes(id, reverseVote).then(() => {
+        setUpvoted(false);
+        setDownvoted(false);
+        localStorage.setItem("upVoted", JSON.stringify(false));
+        localStorage.setItem("downVoted", JSON.stringify(false));
+        setVotes((currentVotes) => currentVotes + reverseVote);
+        setIsVoting(false);
+      });
     }
   }
 
   return (
     <>
       <p>
-        <button className={upVoted ? "pressed-vote-button" : downVoted ? "disabled-vote-button" : null} value={1} disabled={downVoted} onClick={handleChange}>
+        <button
+          className={upVoted ? "pressed-vote-button" : null}
+          value={1}
+          disabled={isVoting || downVoted}
+          onClick={handleVoteChange}
+        >
           👍
         </button>{" "}
-        <button className={downVoted ? "pressed-vote-button" : upVoted ? "disabled-vote-button" : null} value={-1} disabled={upVoted} onClick={handleChange}>
+        <button
+          className={downVoted ? "pressed-vote-button" : null}
+          value={-1}
+          disabled={isVoting || upVoted}
+          onClick={handleVoteChange}
+        >
           👎
         </button>
       </p>
-      {upVoted || downVoted ? <p>Thanks for voting!</p> : null}
+      {messageVisible && <p>Thanks for voting!</p>}
     </>
   );
 }
