@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import { ArticleList } from "./ArticleList";
+import { ArticleList } from "./articles/ArticleList";
 import { fetchArticles } from "../api";
-import { MainArticleCard } from "./MainArticleCard";
-import { Link } from "react-router-dom";
+import { MainArticleCard } from "./articles/MainArticleCard";
 
 export function Home() {
   const [articles, setArticles] = useState([]);

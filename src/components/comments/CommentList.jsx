@@ -1,9 +1,9 @@
-import { fetchCommentsByArticle } from "../api";
+import { fetchCommentsByArticle } from "../../api";
 import { useEffect, useState } from "react";
 import { CommentCard } from "./CommentCard";
 
 export function CommentList(props) {
-  const { id } = props;
+  const { id, newComment } = props;
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -31,9 +31,13 @@ export function CommentList(props) {
 
   return (
     <section className="comment-container">
+        {newComment ? <div className="new-comment-container">
+          <h3>Comment Posted!</h3>
+          <CommentCard id="new-comment" key={newComment.comment_id} comment={newComment}/>
+          </div> : null }
       {comments.map((comment) => {
-      return <CommentCard key={comment.comment_id} comment={comment}/>
-    })}
+        return <CommentCard key={comment.comment_id} comment={comment} />;
+      })}
     </section>
-  )
+  );
 }
