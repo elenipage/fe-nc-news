@@ -35,3 +35,9 @@ export function addComment(id, comment) {
   });
 }
 
+export function fetchUser(username) {
+  return api.get(`/users/${username}`).then(({data}) => {
+    return data.user
+  })
+}
+

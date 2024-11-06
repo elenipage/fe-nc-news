@@ -154,6 +154,9 @@ button:focus-visible {
   justify-content: center;
   width: 100%;
 }
+.comment-container p {
+  font-size: small;
+}
 
 .comment-card {
   display: flex;
@@ -176,6 +179,17 @@ button:focus-visible {
 .comment-text p {
   padding-bottom: 10px;
   padding-top: 10px;
+}
+
+.comment-date {
+  margin-top: 12px;
+  margin-right: 18px;
+  text-align: right;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
 }
 
 .pressed-vote-button {
@@ -224,4 +238,15 @@ button:focus-visible {
 .no-comment-msg {
   padding-bottom: 150px;
   text-align: center;
+}
+
+.avatar {
+  margin-left: 20px;
+  margin-top: 15px;
+  object-fit: contain;
+  height: 40px;
+  width: 40px;
+  border: 1px solid #BF132D;
+  border-radius: 50%;
+  background-color: white;
 }
