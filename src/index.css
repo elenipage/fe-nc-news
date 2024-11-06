@@ -220,3 +220,8 @@ button:focus-visible {
   border-radius: 15px;
   border: 1px solid #BF132D;
 }
+
+.no-comment-msg {
+  padding-bottom: 150px;
+  text-align: center;
+}
