@@ -52,11 +52,11 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #f33350;
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  border-color: #BF132D;
 }
 
 .card-container {
@@ -176,4 +176,21 @@ button:focus-visible {
 .comment-text p {
   padding-bottom: 10px;
   padding-top: 10px;
+}
+
+.pressed-vote-button {
+  border-radius: 8px;
+  border: 2px solid;
+  border-color: #BF132D;
+  padding: 0.3em 0.8em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+.disabled-vote-button {
+  border-style: hidden;
 }

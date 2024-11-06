@@ -53,10 +53,10 @@ export function VoteChanger(props) {
   return (
     <>
       <p>
-        <button value={1} disabled={downVoted} onClick={handleChange}>
+        <button className={upVoted ? "pressed-vote-button" : downVoted ? "disabled-vote-button" : null} value={1} disabled={downVoted} onClick={handleChange}>
           👍
         </button>{" "}
-        <button value={-1} disabled={upVoted} onClick={handleChange}>
+        <button className={downVoted ? "pressed-vote-button" : upVoted ? "disabled-vote-button" : null} value={-1} disabled={upVoted} onClick={handleChange}>
           👎
         </button>
       </p>
