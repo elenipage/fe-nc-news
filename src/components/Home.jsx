@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { ArticleList } from "./articles/ArticleList";
 import { fetchArticles } from "../api";
 import { MainArticleCard } from "./articles/MainArticleCard";
+import { TopicNav } from "./TopicNav";
 
 export function Home() {
   const [articles, setArticles] = useState([]);
@@ -57,6 +58,7 @@ export function Home() {
 
   return (
     <>
+    <TopicNav />
       <h2>Featured</h2>
       <section className="main-card-container">
         <MainArticleCard article={latest} />

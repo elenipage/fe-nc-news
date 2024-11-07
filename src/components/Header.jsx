@@ -42,10 +42,6 @@ export function Header(props) {
           <AccountCircle fontSize="large" sx={{ color: "#ef1c1c" }} />
         </IconButton>
       </header>
-      <select onChange={handleChange}>
-        <option>Topics</option>
-        <option value="/articles">All</option>
-      </select>
     </>
   );
 }

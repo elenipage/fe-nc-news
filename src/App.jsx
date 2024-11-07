@@ -17,6 +17,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/articles' element={<ArticleHandler/>}/>
+        <Route path='/articles/:topic' element={<ArticleHandler/>}/>
         <Route path='/articles/:id' element={<SingleArticle/>}/>
         <Route path='/users/:username' element={<Profile username={username}/>}/>
         <Route path='/login' element={<Login username={username}/>}/>
