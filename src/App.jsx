@@ -5,12 +5,11 @@ import { Profile } from './components/Profile'
 import { Home } from './components/Home'
 import { ArticleHandler } from './components/articles/ArticleHandler'
 import { SingleArticle } from './components/articles/SingleArticle'
-import { useUser } from './components/UserContext'
 import { Login } from './components/Login'
 
 
 function App() {
-  const { username , setUsername } = useUser()
+  const username = JSON.parse(localStorage.getItem("username"))
 
   return (
     <>

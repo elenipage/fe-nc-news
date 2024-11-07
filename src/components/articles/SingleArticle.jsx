@@ -56,7 +56,7 @@ export function SingleArticle() {
         <p>Comments: {article.comment_count}</p>
       </section>
       <CommentAdder setNewComment={setNewComment} id={article.article_id} />
-      <CommentList newComment={newComment} id={article.article_id} />
+      <CommentList newComment={newComment} setNewComment={setNewComment} id={article.article_id} />
     </>
   );
 }
