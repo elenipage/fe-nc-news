@@ -1,16 +1,18 @@
 import { useState, useEffect } from "react";
 import { ArticleList } from "./ArticleList";
 import { fetchArticles } from "../../api";
+import { useParams } from "react-router-dom";
 
 export function ArticleHandler() {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const { topic } = useParams()
 
   useEffect(() => {
     setIsLoading(true);
     setIsError(false);
-    fetchArticles()
+    fetchArticles(topic)
       .then((data) => {
         setArticles(data);
         setIsLoading(false);
