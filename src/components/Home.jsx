@@ -30,9 +30,11 @@ export function Home() {
       })
       .then(([latestDate, data]) => {
         data.forEach((article) => {
-            const articleDate = new Date(article.created_at)
-            if (articleDate.getTime() === latestDate.getTime()) {setLatest(article)}
-        })
+          const articleDate = new Date(article.created_at);
+          if (articleDate.getTime() === latestDate.getTime()) {
+            setLatest(article);
+          }
+        });
         setIsLoading(false);
       })
       .catch((err) => {
@@ -53,18 +55,16 @@ export function Home() {
     setAllArticlesClicked(!allArticlesClicked);
   }
 
-  
-
   return (
     <>
+      <h2>Featured</h2>
       <section className="main-card-container">
-        <MainArticleCard article={latest}/>
+        <MainArticleCard article={latest} />
       </section>
       <a onClick={handleClick}>
         {allArticlesClicked ? <h3>▼ All Articles</h3> : <h3>► All Articles</h3>}
       </a>
       {allArticlesClicked ? <ArticleList articles={articles} /> : null}
-      
     </>
   );
 }

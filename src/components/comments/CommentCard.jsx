@@ -15,8 +15,6 @@ export function CommentCard(props) {
     });
   }, []);
 
-  console.log(avatarUrl);
-
   return (
     <>
       <section className="comment-card">

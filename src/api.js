@@ -41,3 +41,9 @@ export function fetchUser(username) {
   })
 }
 
+export function fetchUsers() {
+  return api.get("/users").then(({data}) => {
+    return data.users
+  })
+}
+
