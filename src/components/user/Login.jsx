@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { useUser } from "./UserContext";
-import { fetchUsers } from "../api";
+import { fetchUsers } from "../../api";
 import { UserCard } from "./UserCard";
 
 export function Login() {

@@ -4,9 +4,12 @@ const api = axios.create({
   baseURL: "https://nc-news-backend-37tu.onrender.com/api",
 });
 
-export function fetchArticles(topic) {
+export function fetchArticles(topic, sort_by, order) {
   let queryStr = `/articles`
-  if (topic) {queryStr += `?topic=${topic}`}
+  if (topic || sort_by || order) {queryStr += `?`}
+  if (topic) {sort_by || order ? queryStr += `&topic=${topic}` : queryStr += `topic=${topic}`}
+  if (sort_by) {topic || order ? queryStr += `&sort_by=${sort_by}` : queryStr += `sort_by=${sort_by}`}
+  if (order) {topic || sort_by ? queryStr += `&order=${order}` : queryStr += `order=${order}`}
 
   return api.get(queryStr).then(({ data }) => {
     return data.articles;
