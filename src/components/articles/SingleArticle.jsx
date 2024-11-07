@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { fetchArticleById, incrementVotes } from "../../api";
+import { fetchArticleById } from "../../api";
 import dateFormat from "dateformat";
 import { CommentList } from "../comments/CommentList";
 import { VoteChanger } from "./VoteChanger";
@@ -21,19 +21,20 @@ export function SingleArticle() {
     setIsLoading(true);
     setNewComment(null);
     fetchArticleById(id)
-      .then((article) => {
-        setArticle(article);
+      .then((data) => {
+        setArticle(data);
         setIsLoading(false);
-        setVotes(article.votes);
+        setVotes(data.votes);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err)
+        localStorage.setItem("error", JSON.stringify(err))
         setIsError(true);
       });
   }, []);
 
   if (isError) {
-    return <p>Something went seriously wrong...</p>;
+    window.location.href = `/error`
   }
 
   if (isLoading) {
