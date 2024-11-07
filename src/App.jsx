@@ -17,7 +17,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/articles" element={<ArticleList />} />
         <Route path="/articles/:topic" element={<ArticleList />} />
-        <Route path="/articles/:id" element={<SingleArticle />} />
+        <Route path="/article/:id" element={<SingleArticle />} />
         <Route
           path="/users/:username"
           element={<Profile username={username} />}
