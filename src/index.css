@@ -5,7 +5,7 @@
 }
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: MarkPro, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color: #213547;
@@ -21,18 +21,25 @@
 }
 
 header {
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
   margin: 30px;
+}
+
+.header-button {
+  width: 50px;
+  height: 50px;
 }
 
 a {
   font-weight: 500;
-  color: #BF132D;
+  color: #ef1c1c;
   text-decoration: inherit;
 }
 
 a:hover {
-  color: #dd2440;
+  color: #cb0000;
 }
 
 h1 {
@@ -101,8 +108,6 @@ button:focus-visible {
   width: 100%;
   margin-left: 35px;
   margin-right: 35px;
-  margin-top: 10px;
-  margin-bottom: 10px;
   border-style: hidden;
   border-radius: 10px;
 }
@@ -154,6 +159,9 @@ button:focus-visible {
   justify-content: center;
   width: 100%;
 }
+.comment-container p {
+  font-size: small;
+}
 
 .comment-card {
   display: flex;
@@ -176,6 +184,17 @@ button:focus-visible {
 .comment-text p {
   padding-bottom: 10px;
   padding-top: 10px;
+}
+
+.comment-date {
+  margin-top: 12px;
+  margin-right: 18px;
+  text-align: right;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
 }
 
 .pressed-vote-button {
@@ -224,4 +243,42 @@ button:focus-visible {
 .no-comment-msg {
   padding-bottom: 150px;
   text-align: center;
+}
+
+.avatar {
+  margin-left: 20px;
+  margin-top: 15px;
+  object-fit: contain;
+  height: 40px;
+  width: 40px;
+  border: 1px solid #BF132D;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.login-avatar {
+  margin-left: 20px;
+  margin-top: 15px;
+  object-fit: contain;
+  height: 100px;
+  width: 100px;
+  border: 1px solid #BF132D;
+  border-radius: 15%;
+  background-color: white;
+}
+
+.user-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.user-card {
+  display: flex;
+  margin: 10px;
+  width: 350px;
+  height: 140px;
+  justify-content: center;
+  align-content: center;
 }
