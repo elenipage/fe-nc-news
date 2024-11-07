@@ -1,7 +1,6 @@
 import { IconButton } from "@mui/material";
 import { AccountCircle, Home } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import { useUser } from "./UserContext";
 import { useState, useEffect } from "react";
 
 export function Header(props) {

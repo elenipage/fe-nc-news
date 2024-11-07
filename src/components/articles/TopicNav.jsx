@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchTopics } from "../api";
-import { useParams } from "react-router-dom";
+import { fetchTopics } from "../../api";
 
 export function TopicNav() {
   const [topics, setTopics] = useState([]);
