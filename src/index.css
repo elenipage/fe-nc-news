@@ -228,15 +228,13 @@ button:focus-visible {
   font-size: medium;
 }
 
-.new-comment-container {
-  padding-top: 10px;
+.new-comment-card {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  background-color: rgb(239, 239, 239);
   width: 95%;
-  background-color: #f7f7f7;
-  border-radius: 15px;
+  margin: 10px;
+  border-radius: 10px;
   border: 1px solid #BF132D;
 }
 
@@ -281,4 +279,32 @@ button:focus-visible {
   height: 140px;
   justify-content: center;
   align-content: center;
+}
+
+.comment-buttons {
+  height: 30px;
+  margin-left: 20px;
+  margin-right: 8px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.vote-button-container {
+  height: 30px
+}
+
+.delete-button {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 35px;
+  height: 35px
+}
+
+.delete-message {
+  text-align: center;
+  color: #cb0000;
+  margin: 10px
 }

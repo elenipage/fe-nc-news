@@ -19,7 +19,7 @@ export function PostComment(props) {
 
     const commentObj = {
       body: currentInput,
-      author: { username },
+      author: username,
     };
 
     setResponseBody(commentObj);

@@ -3,13 +3,27 @@ import { useEffect, useState } from "react";
 import { CommentCard } from "./CommentCard";
 
 export function CommentList(props) {
-  const { id, newComment } = props;
+  const { id, newComment, setNewComment } = props;
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [noComments, setNoComments] = useState(false);
+  const [messageVisible, setMessageVisible] = useState(false);
+  const [deleted, setDeleted] = useState(false);
+  const [newClass, setNewClass] = useState("comment-card");
+  const [newMessageVisible, setNewMessageVisible] = useState(false);
 
   useEffect(() => {
+    if (deleted) {
+      setMessageVisible(true);
+      setTimeout(() => setMessageVisible(false), 5000);
+      setTimeout(() => setDeleted(false), 5000);
+    }
+
+    if (newComment) {
+      setTimeout(() => setMessageVisible(false), 5000);
+      setNewComment(false);
+    }
     setNoComments(false);
     setIsLoading(true);
     setIsError(false);
@@ -25,36 +39,67 @@ export function CommentList(props) {
         console.log(err);
         setIsError(true);
       });
-  }, []);
+  }, [deleted]);
+
+  useEffect(() => {
+    setNewClass("new-comment-card");
+    setTimeout(() => setNewClass("comment-card"), 5000);
+    if (newComment) {
+      setNewMessageVisible(true);
+      setTimeout(() => setNewMessageVisible(false), 5000);
+    }
+  }, [newComment]);
 
   if (isError) {
     return <p>Something went wrong</p>;
   }
   if (isLoading) {
-    return <p>Loading...</p>;
+    return (
+      <section className="no-comment-msg">
+        <h4>Loading Comments...</h4>
+      </section>
+    );
   }
 
   return (
-    <section className="comment-container">
-      {newComment ? (
-        <div className="new-comment-container">
-          <h3>Comment Posted!</h3>
-          <CommentCard
-            id="new-comment"
-            key={newComment.comment_id}
-            comment={newComment}
-          />
-        </div>
+    <>
+      {messageVisible ? (
+        <p className="delete-message">Comment Deleted</p>
       ) : null}
-      {noComments ? (
-        <section className="no-comment-msg">
-          <h4>Sorry, no comments yet...</h4>
-          <p>Why not have your say?</p>
-        </section>
+      {newMessageVisible ? (
+        <p className="delete-message">Comment Posted</p>
       ) : null}
-      {comments.map((comment) => {
-        return <CommentCard key={comment.comment_id} comment={comment} />;
-      })}
-    </section>
+      <section className="comment-container">
+        {newComment ? (
+          <div className={newClass}>
+            <CommentCard
+              id="new-comment"
+              key={newComment.comment_id}
+              comment={newComment}
+              deleted={deleted}
+              setDeleted={setDeleted}
+              newClass={newClass}
+            />
+          </div>
+        ) : null}
+        {noComments ? (
+          <section className="no-comment-msg">
+            <h4>Sorry, no comments yet...</h4>
+            <p>Why not have your say?</p>
+          </section>
+        ) : null}
+        {comments.map((comment) => {
+          return (
+            <CommentCard
+              key={comment.comment_id}
+              newClass={newClass}
+              comment={comment}
+              deleted={deleted}
+              setDeleted={setDeleted}
+            />
+          );
+        })}
+      </section>
+    </>
   );
 }
