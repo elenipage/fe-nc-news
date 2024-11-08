@@ -7,7 +7,7 @@ export function MainArticleCard(props) {
     const date = dateFormat(article.created_at, "dddd, mmmm dS, yyyy, HH:MM")
 
     return (
-        <Link className="main-card" to={`articles/${article.article_id}`}>
+        <Link className="main-card" to={`article/${article.article_id}`}>
             <img src={article.article_img_url}></img>
 
             <section className="main-card-text">

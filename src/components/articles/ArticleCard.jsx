@@ -7,7 +7,7 @@ export function ArticleCard(props) {
   const date = dateFormat(article.created_at, "dddd, mmmm dS, yyyy");
 
   return (
-    <Link className="item-card" to={`/articles/${article.article_id}`}>
+    <Link className="item-card" to={`/article/${article.article_id}`}>
       <img src={article.article_img_url}></img>
 
       <section className="card-text">
