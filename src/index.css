@@ -1,4 +1,4 @@
-*{
+* {
   box-sizing: border-box;
   margin: 0%;
   padding: 0%;
@@ -64,7 +64,7 @@ button:hover {
 }
 button:focus,
 button:focus-visible {
-  border-color: #BF132D;
+  border-color: #bf132d;
 }
 
 .card-container {
@@ -74,14 +74,6 @@ button:focus-visible {
   justify-content: center;
   width: 100%;
   padding: 10px;
-}
-
-.main-card-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
 }
 
 .item-card {
@@ -96,15 +88,41 @@ button:focus-visible {
   border-style: hidden;
   border-radius: 10px;
 }
+.item-card:hover {
+  filter: drop-shadow(0 0 0.2rem rgb(182, 178, 178));
+}
 
 .item-card img {
   width: 40%;
-  height: 75%;
-  padding-right: 10px;
-  padding-left: 20px;
+  min-height: 130px;
   object-fit: cover;
+  margin: 10px;
+  border-style: hidden;
+  border-radius: 10px;
 }
 
+.item-card p {
+  color: #213547;
+}
+
+.card-text {
+  font-size: small;
+  width: 70%;
+  margin: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.main-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.main-card:hover {
+  filter: drop-shadow(0 0 0.2rem rgb(182, 178, 178));
+}
 .main-card {
   display: flex;
   flex-direction: column;
@@ -118,9 +136,11 @@ button:focus-visible {
   border-radius: 10px;
 }
 
-.main-card img {
+.main-article-img {
   width: 100%;
   padding: 20px;
+  border-style: hidden;
+  border-radius: 30px;
 }
 
 .main-card p {
@@ -128,23 +148,11 @@ button:focus-visible {
   font-size: small;
 }
 
-.item-card p {
-  color: #213547;
-}
-
-.card-text {
-  font-size: small;
-  width: 70%;
-  margin-right: 10px;
-  padding: 10px;
-}
-
 .main-card-text {
   width: 100%;
   padding-bottom: 20px;
   padding-left: 20px;
   padding-right: 20px;
-  
 }
 
 .article-container {
@@ -164,6 +172,7 @@ button:focus-visible {
   align-items: center;
   justify-content: center;
   width: 100%;
+  margin-bottom: 100px;
 }
 .comment-container p {
   font-size: small;
@@ -206,7 +215,7 @@ button:focus-visible {
 .pressed-vote-button {
   border-radius: 8px;
   border: 2px solid;
-  border-color: #BF132D;
+  border-color: #bf132d;
   padding: 0.3em 0.8em;
   font-size: 1em;
   font-weight: 500;
@@ -242,7 +251,7 @@ button:focus-visible {
   width: 95%;
   margin: 10px;
   border-radius: 10px;
-  border: 1px solid #BF132D;
+  border: 1px solid #bf132d;
 }
 
 .no-comment-msg {
@@ -256,7 +265,7 @@ button:focus-visible {
   object-fit: contain;
   height: 40px;
   width: 40px;
-  border: 1px solid #BF132D;
+  border: 1px solid #bf132d;
   border-radius: 50%;
   background-color: white;
 }
@@ -267,7 +276,7 @@ button:focus-visible {
   object-fit: contain;
   height: 100px;
   width: 100px;
-  border: 1px solid #BF132D;
+  border: 2px solid #bf132d;
   border-radius: 15%;
   background-color: white;
 }
@@ -286,6 +295,8 @@ button:focus-visible {
   height: 140px;
   justify-content: center;
   align-content: center;
+  border: 1px solid #e4e4e4;
+  border-radius: 5%;
 }
 
 .comment-buttons {
@@ -307,13 +318,13 @@ button:focus-visible {
   justify-content: center;
   align-content: center;
   width: 35px;
-  height: 35px
+  height: 35px;
 }
 
 .delete-message {
   text-align: center;
   color: #cb0000;
-  margin: 10px
+  margin: 10px;
 }
 
 .filter-bar {
@@ -331,4 +342,94 @@ button:focus-visible {
 .comment-error {
   font-size: small;
   color: #cb0000;
+}
+
+.profile-container {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  background-color: rgb(239, 239, 239);
+  padding: 30px;
+  border: solid #e4e4e4;
+  border-radius: 5%;
+  margin-top: 50px;
+}
+
+.profile-image {
+  border: solid #cb0000;
+  border-radius: 5%;
+  background-color: #ffffff;
+  width: 220px;
+  height: 220px;
+  object-fit: contain;
+}
+
+.profile-text {
+  margin: 10px;
+}
+
+.double-article-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  width: 100%;
+  justify-items: center;
+  margin-bottom: 10px;
+}
+.double-article-img {
+  width: 80%;
+  border-style: hidden;
+  border-radius: 3%;
+  margin-top: 20px;
+
+}
+.double-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(239, 239, 239);
+  width: 100%;
+  min-height: 320px;
+  margin-left: 35px;
+  margin-right: 35px;
+  border-style: hidden;
+  border-radius: 10px;
+}
+.double-card p {
+  color: #213547;
+  font-size: small;
+}
+.most-voted-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-area: 1 / 1 / 2 / 2;
+  width: 100%;
+  padding-right: 10px;
+  padding-top: 10px;
+}
+.most-commented-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-area: 1 / 2 / 2 / 3;
+  width: 100%;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+.double-card:hover {
+  filter: drop-shadow(0 0 0.2rem rgb(182, 178, 178))
+}
+
+.toggle-all {
+  margin-bottom: 40px;
 }
