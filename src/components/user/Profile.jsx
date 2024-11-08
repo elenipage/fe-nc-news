@@ -47,7 +47,7 @@ export function Profile() {
   if (isError) {
     return (
       <>
-        <p>Something went seriously wrong...</p>
+        <p>Something went wrong...</p>
         <p>Try logging in:</p>
         <button onClick={handleClick}>Log in</button>
       </>
@@ -59,12 +59,15 @@ export function Profile() {
   }
 
   return (
-    <>
-      <h1>Profile</h1>
-      <h2>{username}</h2>
-      <h3>{user.name}</h3>
-      <img src={user.avatar_url}></img>
-      <button onClick={handleClick}>Log Out</button>
-    </>
+    <section className="profile-container">
+      <section className="profile-card">
+        <img className="profile-image" src={user.avatar_url} />
+        <section className="profile-text">
+          <h2>{username}</h2>
+          <h3>{user.name}</h3>
+        </section>
+        <button onClick={handleClick}>Log Out</button>
+      </section>
+    </section>
   );
 }
