@@ -506,3 +506,10 @@ button:focus-visible {
 .login-heading {
   margin-left: 15%;
 }
+
+.login-button {
+  border: 1px solid #ef1c1c;
+}
+.login-button:hover {
+  background-color: #e2e2e2;
+}
