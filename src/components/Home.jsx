@@ -4,6 +4,7 @@ import { fetchArticles } from "../api";
 import { MainArticleCard } from "./articles/MainArticleCard";
 import { TopicNav } from "./articles/TopicNav";
 import { SortFilter } from "./articles/SortFilter";
+import { DoubleArticleCard } from "./articles/DoubleArticleCard";
 
 export function Home() {
   const [articles, setArticles] = useState([]);
@@ -11,6 +12,8 @@ export function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [latest, setLatest] = useState({});
+  const [mostVotes, setMostVotes] = useState({});
+  const [mostComments, setMostComments] = useState({});
 
   useEffect(() => {
     setLatest({});
@@ -19,25 +22,20 @@ export function Home() {
     setIsError(false);
     fetchArticles()
       .then((data) => {
-        setArticles(data);
-        const latestDate = new Date(
-          Math.max.apply(
-            null,
-            data.map((article) => {
-              return new Date(article.created_at);
-            })
-          )
-        );
-        return Promise.all([latestDate, data]);
+        setLatest(data[0]);
       })
-      .then(([latestDate, data]) => {
-        data.forEach((article) => {
-          const articleDate = new Date(article.created_at);
-          if (articleDate.getTime() === latestDate.getTime()) {
-            setLatest(article);
-          }
-        });
-        setIsLoading(false);
+      .then(() => {
+        fetchArticles(null, 'votes')
+        .then((data) => {
+          setMostVotes(data[0])
+        })
+      })
+      .then(() => {
+        fetchArticles(null, 'comment_count')
+        .then((data) => {
+          setMostComments(data[0])
+        })
+        setIsLoading(false)
       })
       .catch((err) => {
         console.log(err);
@@ -46,7 +44,7 @@ export function Home() {
   }, []);
 
   if (isError) {
-    return <p>Something went wrong</p>;
+    window.location.href = `/error`;
   }
   if (isLoading) {
     return <p>Loading...</p>;
@@ -66,8 +64,9 @@ export function Home() {
       <section className="main-card-container">
         <MainArticleCard article={latest} />
       </section>
+      <DoubleArticleCard mostVotes={mostVotes} mostComments={mostComments}/>
       <a onClick={handleClick}>
-        {allArticlesClicked ? <h3>▼ All Articles</h3> : <h3>► All Articles</h3>}
+        {allArticlesClicked ? <h3 className="toggle-all">▼ All Articles</h3> : <h3 className="toggle-all">► All Articles</h3>}
       </a>
       {allArticlesClicked ? <ArticleList articles={articles} /> : null}
     </>

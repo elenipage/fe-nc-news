@@ -8,12 +8,11 @@ export function MainArticleCard(props) {
 
     return (
         <Link className="main-card" to={`article/${article.article_id}`}>
-            <img src={article.article_img_url}></img>
+            <img src={article.article_img_url} className="main-article-img"></img>
 
             <section className="main-card-text">
                 <h2>{article.title}</h2>
                 <p>{date}</p>
-                <br/>
                 <p>Topic: {article.topic}</p>
                 <p>Votes: {article.votes} Comments: {article.comment_count}</p>
             </section>
