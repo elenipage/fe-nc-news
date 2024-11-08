@@ -1,17 +1,18 @@
-import {
-  TextField,
-  SwipeableDrawer,
-  Box,
-  Paper,
-  IconButton,
-} from "@mui/material";
+import { SwipeableDrawer, Box, Paper, IconButton } from "@mui/material";
 import { Close } from "@mui/icons-material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PostComment } from "./PostComment";
+import { Link } from "react-router-dom";
 
 export function CommentAdder(props) {
   const { id, setNewComment } = props;
   const [open, setOpen] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [commentDisabled, setCommentDisabled] = useState(false);
+
+  useEffect(() => {
+    setIsError(false);
+  }, [open]);
 
   const toggleDrawer = (newOpen) => (event) => {
     if (
@@ -28,8 +29,9 @@ export function CommentAdder(props) {
   const commentDrawer = (
     <Box
       sx={{
-        height: 250,
+        height: 260,
         margin: 2,
+        marginRight: 3,
       }}
       role="presentation"
     >
@@ -39,7 +41,23 @@ export function CommentAdder(props) {
       >
         <Close />
       </IconButton>
-      <PostComment setOpen={setOpen} id={id} setNewComment={setNewComment} />
+      {isError && !commentDisabled ? (
+        <p className="comment-error">please enter your comment</p>
+      ) : null}
+      {commentDisabled ? (
+        <Link to="/login">
+          <button>log in</button>
+        </Link>
+      ) : null}
+      <PostComment
+        setCommentDisabled={setCommentDisabled}
+        commentDisabled={commentDisabled}
+        setIsError={setIsError}
+        isError={isError}
+        setOpen={setOpen}
+        id={id}
+        setNewComment={setNewComment}
+      />
     </Box>
   );
 

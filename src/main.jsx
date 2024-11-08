@@ -2,18 +2,15 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { UserProvider } from "./components/user/UserContext.jsx";
-import { ErrorProvider } from "./components/ErrorContext.jsx";
 import "./index.css";
 import App from "./App.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <UserProvider>
-      <ErrorProvider>
         <BrowserRouter>
           <App />
         </BrowserRouter>
-      </ErrorProvider>
     </UserProvider>
   </StrictMode>
 );

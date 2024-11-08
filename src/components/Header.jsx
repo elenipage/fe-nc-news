@@ -19,10 +19,6 @@ export function Header(props) {
     window.location.href=`${path}`
   }
 
-  function handleChange(event) {
-    window.location.href=event.target.value
-  }
-
   return (
     <>
       <header>

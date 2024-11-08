@@ -27,7 +27,6 @@ export function SingleArticle() {
         setVotes(data.votes);
       })
       .catch((err) => {
-        console.log(err)
         localStorage.setItem("error", JSON.stringify(err))
         setIsError(true);
       });
