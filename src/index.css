@@ -498,3 +498,11 @@ button:focus-visible {
   display: flex;
   justify-content: center;
 }
+
+.login-container {
+  margin-top: 20px;
+  max-width: 1200px;
+}
+.login-heading {
+  margin-left: 15%;
+}

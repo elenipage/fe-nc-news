@@ -29,13 +29,13 @@ export function Login() {
   }
 
   return (
-    <>
-      <h2>Select a user to log-in:</h2>
+    <section className="login-container">
+      <h2 className="login-heading">Select a user to log-in:</h2>
       <section className="user-container">
         {userList.map((user) => {
           return <UserCard key={user.username} user={user} />;
         })}
       </section>
-    </>
+    </section>
   );
 }
