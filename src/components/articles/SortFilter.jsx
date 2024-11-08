@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import { fetchTopics } from "../../api";
 
 export function SortFilter(props) {
-  const [orderBy, setOrderBy] = useState([]);
-  const [sort, setSort] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const { sortQuery, setSortQuery, orderQuery, setOrderQuery, setSearchParams } = props;
