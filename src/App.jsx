@@ -6,14 +6,17 @@ import { Home } from "./components/Home";
 import { ArticleList } from "./components/articles/ArticleList";
 import { SingleArticle } from "./components/articles/SingleArticle";
 import { Login } from "./components/user/Login";
+import { ErrorPage } from "./components/ErrorPage";
 
 function App() {
   const username = JSON.parse(localStorage.getItem("username"));
+  const error = JSON.parse(localStorage.getItem("error"))
 
   return (
     <>
       <Header username={username} />
       <Routes>
+        <Route path="*" element={<ErrorPage error={error}/>} />
         <Route path="/" element={<Home />} />
         <Route path="/articles" element={<ArticleList />} />
         <Route path="/articles/:topic" element={<ArticleList />} />

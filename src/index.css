@@ -55,6 +55,7 @@ button {
   font-weight: 500;
   font-family: inherit;
   background-color: #f9f9f9;
+  color: #213547;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -210,13 +211,14 @@ button:focus-visible {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #f9f9f9;
+  background-color: #e4e4e4;
   cursor: pointer;
   transition: border-color 0.25s;
 }
 
-.disabled-vote-button {
+:disabled {
   border-style: hidden;
+  color: #4a5864;
 }
 
 #add-comment-button {
@@ -297,7 +299,7 @@ button:focus-visible {
 }
 
 .vote-button-container {
-  height: 30px
+  height: 30px;
 }
 
 .delete-button {
@@ -317,4 +319,16 @@ button:focus-visible {
 .filter-bar {
   display: flex;
   justify-content: space-between;
+}
+
+.error-container {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.comment-error {
+  font-size: small;
+  color: #cb0000;
 }

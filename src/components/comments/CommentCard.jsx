@@ -38,8 +38,7 @@ export function CommentCard(props) {
       <div className="comment-buttons">
         <div className="vote-button-container">
           <p>
-            Votes: {comment.votes} <button>👍</button>
-            <button>👎</button>
+            Votes: {comment.votes}
           </p>
         </div>
         {comment.author === username ? (

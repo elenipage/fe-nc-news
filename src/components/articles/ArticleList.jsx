@@ -26,13 +26,13 @@ export function ArticleList() {
         setIsLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        localStorage.setItem("error", JSON.stringify(err))
         setIsError(true);
       });
   }, [sortQuery, orderQuery]);
 
   if (isError) {
-    return <p>Something went wrong</p>;
+    window.location.href = `/error`
   }
   if (isLoading) {
     return <p>Loading...</p>;

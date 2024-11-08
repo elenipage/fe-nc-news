@@ -8,9 +8,9 @@ import App from "./App.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <UserProvider>
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
     </UserProvider>
   </StrictMode>
 );
