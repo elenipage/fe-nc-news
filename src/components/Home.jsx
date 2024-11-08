@@ -5,6 +5,7 @@ import { MainArticleCard } from "./articles/MainArticleCard";
 import { TopicNav } from "./articles/TopicNav";
 import { SortFilter } from "./articles/SortFilter";
 import { DoubleArticleCard } from "./articles/DoubleArticleCard";
+import Loading from "./Loading";
 
 export function Home() {
   const [articles, setArticles] = useState([]);
@@ -47,7 +48,7 @@ export function Home() {
     window.location.href = `/error`;
   }
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loading/>;
   }
 
   function handleClick(event) {
@@ -56,11 +57,8 @@ export function Home() {
   }
 
   return (
-    <>
-      <section>
-        <TopicNav />
-      </section>
-      <h2>Featured</h2>
+    <section className="home-container">
+      <h2 className="home-heading">Featured Articles</h2>
       <section className="main-card-container">
         <MainArticleCard article={latest} />
       </section>
@@ -69,6 +67,6 @@ export function Home() {
         {allArticlesClicked ? <h3 className="toggle-all">▼ All Articles</h3> : <h3 className="toggle-all">► All Articles</h3>}
       </a>
       {allArticlesClicked ? <ArticleList articles={articles} /> : null}
-    </>
+    </section>
   );
 }
