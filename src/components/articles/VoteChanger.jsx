@@ -8,12 +8,24 @@ export function VoteChanger(props) {
   const [isVoting, setIsVoting] = useState(false);
   const [messageVisible, setMessageVisible] = useState(false);
   const [isError, setIsError] = useState(false);
+  const user = localStorage.getItem("username")
 
   useEffect(() => {
-    setUpvoted(JSON.parse(localStorage.getItem("upVoted") || "false"));
-    setDownvoted(JSON.parse(localStorage.getItem("downVoted") || "false"));
+    const savedVotes = JSON.parse(localStorage.getItem("votes") || "{}");
+    const userVotes = savedVotes[user] || {};
+    const articleVotes = userVotes[id] || { upVoted: false, downVoted: false };
+    setUpvoted(articleVotes.upVoted);
+    setDownvoted(articleVotes.downVoted);
     setIsError(false);
   }, []);
+
+  function updateLocalStorage(newUpVoted, newDownVoted) {
+    const savedVotes = JSON.parse(localStorage.getItem("votes") || "{}");
+    const userVotes = savedVotes[user] || {};
+    userVotes[id] = { upVoted: newUpVoted, downVoted: newDownVoted };
+    savedVotes[user] = userVotes;
+    localStorage.setItem("votes", JSON.stringify(savedVotes));
+  }
 
   function handleVoteChange(event) {
     event.preventDefault();
@@ -27,8 +39,7 @@ export function VoteChanger(props) {
       incrementVotes(id, voteChange).then(() => {
         setUpvoted(true);
         setDownvoted(false);
-        localStorage.setItem("upVoted", JSON.stringify(true));
-        localStorage.setItem("downVoted", JSON.stringify(false));
+        updateLocalStorage(true, false);
         setVotes((currentVotes) => currentVotes + voteChange);
         setMessageVisible(true);
         setTimeout(() => setMessageVisible(false), 3000);
@@ -40,8 +51,7 @@ export function VoteChanger(props) {
         .then(() => {
           setDownvoted(true);
           setUpvoted(false);
-          localStorage.setItem("downVoted", JSON.stringify(true));
-          localStorage.setItem("upVoted", JSON.stringify(false));
+          updateLocalStorage(false, true);
           setVotes((currentVotes) => currentVotes + voteChange);
           setMessageVisible(true);
           setTimeout(() => setMessageVisible(false), 3000);
@@ -57,8 +67,7 @@ export function VoteChanger(props) {
         .then(() => {
           setUpvoted(false);
           setDownvoted(false);
-          localStorage.setItem("upVoted", JSON.stringify(false));
-          localStorage.setItem("downVoted", JSON.stringify(false));
+          updateLocalStorage(false, false);
           setVotes((currentVotes) => currentVotes + reverseVote);
           setIsVoting(false);
         })
@@ -75,7 +84,7 @@ export function VoteChanger(props) {
         <button
           className={upVoted ? "pressed-vote-button" : null}
           value={1}
-          disabled={isVoting || downVoted || isError}
+          disabled={isVoting || isError}
           onClick={handleVoteChange}
         >
           👍
@@ -83,7 +92,7 @@ export function VoteChanger(props) {
         <button
           className={downVoted ? "pressed-vote-button" : null}
           value={-1}
-          disabled={isVoting || upVoted || isError}
+          disabled={isVoting || isError}
           onClick={handleVoteChange}
         >
           👎
