@@ -5,6 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import { ArticleCard } from "./ArticleCard";
 import { SortFilter } from "./SortFilter";
 import { TopicNav } from "./TopicNav";
+import Loading from "../Loading";
 
 export function ArticleList() {
   const [articles, setArticles] = useState([]);
@@ -29,13 +30,13 @@ export function ArticleList() {
         localStorage.setItem("error", JSON.stringify(err))
         setIsError(true);
       });
-  }, [sortQuery, orderQuery]);
+  }, [sortQuery, orderQuery, topic]);
 
   if (isError) {
     window.location.href = `/error`
   }
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
 
   return (

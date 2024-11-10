@@ -46,7 +46,7 @@ export function CommentAdder(props) {
       ) : null}
       {commentDisabled ? (
         <Link to="/login">
-          <button>log in</button>
+          <button className="login-button">log in</button>
         </Link>
       ) : null}
       <PostComment
