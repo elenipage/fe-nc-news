@@ -2,63 +2,65 @@ import { addComment } from "../../api";
 import { useState, useEffect } from "react";
 import { IconButton, TextField } from "@mui/material";
 import { Send } from "@mui/icons-material";
+import { red } from "@mui/material/colors";
 
 export function PostComment(props) {
-  const { setNewComment, id, setOpen, setIsError, isError, commentDisabled, setCommentDisabled} = props;
-  const [currentInput, setCurrentInput] = useState(null);
-  const [responseBody, setResponseBody] = useState(null);
-  commentDisabled, setCommentDisabled
-  const [isLoading, setIsLoading] = useState(true)
+  const {
+    setNewComment,
+    id,
+    setOpen,
+    setIsError,
+    commentDisabled,
+    setCommentDisabled,
+  } = props;
+  const [currentInput, setCurrentInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [inputError, setInputError] = useState(false);
   const username = JSON.parse(localStorage.getItem("username"));
 
+  useEffect(() => {
+    setCommentDisabled(!username);
+  }, [username]);
+
   function handleChange(event) {
-    setIsError(false)
-    if (!event.target.value) {setIsError(true)}
+    setIsError(false);
+    setInputError(false);
     setCurrentInput(event.target.value);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-    if (isError) {return}
 
-    else {
-      const commentObj = {
-        body: currentInput,
-        author: username,
-      };
-  
-      setResponseBody(commentObj);
-      setOpen(false);
+    if (!currentInput.trim()) {
+      setInputError(true);
+      return;
     }
-  }
 
-  useEffect(() => {
-    setIsLoading(true)
-    setIsError(false)
-    setCommentDisabled(false);
-    if (!username) {
-      setCommentDisabled(true);
-    }
-    if (!responseBody) {
-      setIsError(true)
-      setIsLoading(false)
-      return
-    }
-    addComment(id, responseBody)
+    setIsLoading(true);
+
+    const commentObj = {
+      body: currentInput.trim(),
+      author: username,
+    };
+
+    addComment(id, commentObj)
       .then((comment) => {
         setNewComment(comment);
-        {isError ? "please enter your comment" : null}
+        setCurrentInput("");
+        setOpen(false);
+        setIsLoading(false);
       })
       .catch((err) => {
-        localStorage.setItem("error", JSON.stringify(err))
-        setIsError(true)}
-    );
-  }, [responseBody]);
+        console.error("Error posting comment:", err);
+        setIsError(true);
+        setIsLoading(false);
+      });
+  }
 
-  if (isLoading) {return <p>loading...</p>}
+  if (isLoading) return <p>Loading...</p>;
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <TextField
         required
         fullWidth
@@ -74,15 +76,24 @@ export function PostComment(props) {
         placeholder="Add a comment..."
         margin="normal"
         onChange={handleChange}
+        value={currentInput}
         disabled={commentDisabled}
+        error={currentInput ? false : true}
+        helperText={currentInput || commentDisabled ? "" : "Please enter your comment"}
+        color="error"
       />
       <IconButton
         aria-label="post"
         htmlFor="comment-input"
-        sx={{ left: "92%" }}
+        sx={{
+          position: "absolute", 
+          right: "10px", 
+          top: "88%", 
+          transform: "translateY(-50%)",
+        }}
         size="large"
         type="submit"
-        onClick={handleSubmit}
+        disabled={commentDisabled || isLoading}
       >
         <Send fontSize="inherit" />
       </IconButton>
