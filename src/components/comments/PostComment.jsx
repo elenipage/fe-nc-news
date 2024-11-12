@@ -70,7 +70,7 @@ export function PostComment(props) {
         id="comment-input"
         label={
           commentDisabled
-            ? "Sorry, please log in before posting a comment"
+            ? "Please log in before posting comments"
             : `Comment as ${username}`
         }
         placeholder="Add a comment..."

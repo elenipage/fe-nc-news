@@ -31,10 +31,10 @@ export function CommentCard(props) {
         />
         <p className="comment-date">{date}</p>
       </div>
-      <section className="comment-text">
+      <div className="comment-text">
         <h3>{comment.author}</h3>
         <p>{comment.body}</p>
-      </section>
+      </div>
       <div className="comment-buttons">
         <div className="vote-button-container">
           <p>

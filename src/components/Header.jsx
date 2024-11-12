@@ -66,7 +66,7 @@ export function Header(props) {
           </Link>
         </Menu>
         <Link to="/">
-          <h1>NC News</h1>
+          <h1 className="header-text">NC News</h1>
         </Link>
         <IconButton className="header-button" onClick={handleClick}>
           <AccountCircle fontSize="large" sx={{ color: "#ef1c1c" }} />

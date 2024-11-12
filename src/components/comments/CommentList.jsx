@@ -10,7 +10,7 @@ export function CommentList(props) {
   const [noComments, setNoComments] = useState(false);
   const [messageVisible, setMessageVisible] = useState(false);
   const [deleted, setDeleted] = useState(false);
-  const [newClass, setNewClass] = useState("comment-card");
+  const [newClass, setNewClass] = useState("invisible-new-comment");
   const [newMessageVisible, setNewMessageVisible] = useState(false);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export function CommentList(props) {
 
   useEffect(() => {
     setNewClass("new-comment-card");
-    setTimeout(() => setNewClass("comment-card"), 5000);
+    setTimeout(() => setNewClass("invisible-new-comment"), 5000);
     if (newComment) {
       setNewMessageVisible(true);
       setTimeout(() => setNewMessageVisible(false), 5000);

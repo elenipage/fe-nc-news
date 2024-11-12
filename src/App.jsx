@@ -7,13 +7,14 @@ import { ArticleList } from "./components/articles/ArticleList";
 import { SingleArticle } from "./components/articles/SingleArticle";
 import { Login } from "./components/user/Login";
 import { ErrorPage } from "./components/ErrorPage";
+import { Container } from "@mui/material";
 
 function App() {
   const username = JSON.parse(localStorage.getItem("username"));
   const error = JSON.parse(localStorage.getItem("error"))
 
   return (
-    <>
+    <Container maxWidth="xl" sx={{paddingLeft: 1, paddingRight: 1}}>
       <Header username={username} />
       <Routes>
         <Route path="*" element={<ErrorPage error={error}/>} />
@@ -27,7 +28,7 @@ function App() {
         />
         <Route path="/login" element={<Login username={username} />} />
       </Routes>
-    </>
+    </Container>
   );
 }
 
